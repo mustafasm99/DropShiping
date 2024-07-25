@@ -1,0 +1,5 @@
+*.pyc
+*.env
+/backend/bin/
+/backend/*.sqlite
+
