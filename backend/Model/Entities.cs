@@ -19,6 +19,7 @@ namespace backend.Model.Entities
           public required string phone_number {get; set;}
           public bool is_stuff {get;set;} = false;
           public bool is_superUser {get ; set;} = false;
+          public string password { get; set; } = Guid.NewGuid().ToString();
      }
 
      public class Category

@@ -38,12 +38,15 @@ namespace backend.Controllers
 
 
           [HttpPost]
-          public ActionResult <IEmailSender<AddUsersDtos>> NewUser(  AddUsersDtos newUser) // dto => data transfare object 
+          public ActionResult <IEmailSender<AddUsersDtos>> NewUser([FromForm]  AddUsersDtos newUser) // dto => data transfare object 
           {
+               var hashPassword = HashHelper.Hashinfo(newUser.password);
                var user = new UserAuth{
                     username = newUser.username,
                     email    = newUser.email,
                     phone_number = newUser.phone_number,
+
+                    password = hashPassword,
 
                     first_name = newUser.first_name,
                     last_name  = newUser.last_name,

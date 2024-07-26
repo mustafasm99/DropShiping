@@ -8,6 +8,8 @@ namespace backend.Model.UsersDtos
           public required string email {get;set;}
           public DateTime last_login {get; set;}
           public required string phone_number {get; set;} 
+          public required string password {get; set;}
+          
      }
 
      public class UpdateUser

@@ -1,28 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\DropShiping\\backend\\backend.csproj": {}
+    "C:\\project\\C#\\DropShiping\\DropShiping\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\DropShiping\\backend\\backend.csproj": {
+    "C:\\project\\C#\\DropShiping\\DropShiping\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\DropShiping\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\project\\C#\\DropShiping\\DropShiping\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Projects\\DropShiping\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\DropShiping\\backend\\obj\\",
+        "projectPath": "C:\\project\\C#\\DropShiping\\DropShiping\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\Global-pc\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\C#\\DropShiping\\DropShiping\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Global-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://code.ta3leem.dev/api/v4/projects/38/packages/nuget/index.json": {},
-          "https://code.ta3leem.dev/api/v4/projects/46/packages/nuget/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -45,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.7, )"
