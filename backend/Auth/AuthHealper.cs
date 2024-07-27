@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using backend.Model.Entities;
 
+namespace backend ;
     public class AuthHelper
     {
         private readonly IConfiguration configuration;
@@ -18,12 +19,14 @@ using backend.Model.Entities;
 
         public string GenerateJWTToken(UserAuth user)
         {
+            var role = user.is_superUser ? "Admin" : user.is_stuff ? "Stuff" : "user" ;
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.username),
+                new Claim(ClaimTypes.Role , role)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["ApplicationSettings:JWT_Secret"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["ApplicationSettings:JWT_Secret"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var jwtToken = new JwtSecurityToken(

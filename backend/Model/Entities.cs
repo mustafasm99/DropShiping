@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Model.Entities
-
+// these file is for create database tabels 
 {
      [Index(nameof(username)       , IsUnique = true)] // put rouls on field 
      [Index(nameof(phone_number)   , IsUnique = true)] 

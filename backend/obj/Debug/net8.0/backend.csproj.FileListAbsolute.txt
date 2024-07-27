@@ -274,3 +274,5 @@ C:\project\C#\DropShiping\DropShiping\backend\obj\Debug\net8.0\backend.pdb
 C:\project\C#\DropShiping\DropShiping\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
 C:\project\C#\DropShiping\DropShiping\backend\obj\Debug\net8.0\ref\backend.dll
 C:\project\C#\DropShiping\DropShiping\backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Projects\DropShiping\backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Projects\DropShiping\backend\obj\Debug\net8.0\backend.sourcelink.json

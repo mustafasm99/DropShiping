@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(x=>{
           ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8
-            .GetBytes(configuration["ApplicationSettings:JWT_Secret"])
+            .GetBytes(configuration["ApplicationSettings:JWT_Secret"]!)
         ),
         ValidateIssuer = false,
         ValidateAudience = false,
@@ -42,20 +42,13 @@ builder.Services.AddSwaggerGen(option =>{
     option.SwaggerDoc("v1" , new OpenApiInfo{Title = "DropShiping" , Version = "V1"});
     option.AddSecurityDefinition("Bearer" , new OpenApiSecurityScheme{
         In = ParameterLocation.Header,
-        Description = "Please enter valid Token",
         Name = "Authorization",
-        Type = SecuritySchemeType.Http,
+        Type = SecuritySchemeType.ApiKey,
+        Description = "Please enter valid Token",
         BearerFormat = "JWT",
         Scheme = "Bearer"
     });
 
-    option.AddSecurityDefinition("UserId" , new OpenApiSecurityScheme{
-            In = ParameterLocation.Header,
-            Description = "Enter user id",
-            Name    = "UserId",
-            Type    = SecuritySchemeType.ApiKey,
-            Scheme = "UserId"
-    });
 
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -72,21 +65,6 @@ builder.Services.AddSwaggerGen(option =>{
         }
     });
 
-    // for user id Login these will remove later
-    option.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "UserId"
-                }
-            },
-            new string [] {}
-        }
-    });
 });
 
 var app = builder.Build();

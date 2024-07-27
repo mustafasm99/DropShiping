@@ -5,13 +5,14 @@ using backend.Model.Entities;
 using backend.Migrations;
 using Microsoft.EntityFrameworkCore;
 using backend.Model;
+using Microsoft.AspNetCore.Authorization;
 
 
 
 namespace backend.Controllers
 {
      [Route("api/[controller]")]
-     [ApiController]
+     [ApiController , Authorize(Roles = "Stuff")]
      public class CategoryController : ControllerBase 
      {
           private readonly AppDBContext dBContext;
@@ -55,7 +56,7 @@ namespace backend.Controllers
 
 
           [HttpPost] // Create new Category
-          [FullAuth]
+          [Authorize]
           public async Task<ActionResult<IEnumerable<CreateNewCategory>>> CreateNewCatogry([FromForm] CreateNewCategory data)
           {
                
@@ -68,7 +69,6 @@ namespace backend.Controllers
           }
 
           [HttpDelete("{id}")]
-          [FullAuth]
           public async Task<ActionResult <IEnumerable<Category>>> DeleteCategory(string id){
                if(Guid.TryParse(id , out var token))
                {
@@ -87,7 +87,6 @@ namespace backend.Controllers
 
 
           [HttpPut("{id}")]
-          [FullAuth]
           public async Task<ActionResult<IEnumerable<Category>>> UpdateCategory(string id, [FromForm] UpdateCategory input)
           {
                if (!Guid.TryParse(id, out var categoryId))

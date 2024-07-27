@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using backend.Model.Entities;
 using backend.Model.UsersDtos;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace backend.Controllers
 {
      [Route("api/[controller]")]
      [ApiController]
+     [Authorize]
      public class UserController : ControllerBase{
 
           private readonly AppDBContext dbContext;
@@ -38,9 +40,11 @@ namespace backend.Controllers
 
 
           [HttpPost]
+          [AllowAnonymous]
           public ActionResult <IEmailSender<AddUsersDtos>> NewUser([FromForm]  AddUsersDtos newUser) // dto => data transfare object 
           {
-               var hashPassword = HashHelper.Hashinfo(newUser.password);
+               try {
+                     var hashPassword = BCrypt.Net.BCrypt.HashPassword(newUser.password);
                var user = new UserAuth{
                     username = newUser.username,
                     email    = newUser.email,
@@ -57,7 +61,11 @@ namespace backend.Controllers
                dbContext.UsersAuths.Add(user);
                dbContext.SaveChanges();
 
-               return Ok(user);
+               return Ok("successfily created");
+               }catch {
+                    return BadRequest("the username or the email is already excet ");
+               }
+              
           }
 
      

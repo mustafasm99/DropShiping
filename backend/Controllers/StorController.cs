@@ -5,11 +5,13 @@ using backend.Model.Entities;
 using backend.Model;
 using Microsoft.EntityFrameworkCore;           // backend models 
 using backend.Model.UsersDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Controllers
 {
      [Route("api/[controller]")]
      [ApiController]
+     [Authorize]
      public class StoreController : ControllerBase 
      {
           private readonly AppDBContext dBContext; // => database connection

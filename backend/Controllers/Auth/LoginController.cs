@@ -8,22 +8,29 @@ namespace backend.Controllers.Auth
      [Route("api/[controller]")]
      [ApiController]
      [AllowAnonymous]
-     public class login:ControllerBase{
+     public class Login:ControllerBase{
           private readonly AppDBContext dbContext ;
-          public login(AppDBContext dbcontext){
+          private readonly IConfiguration conf;
+          public Login(AppDBContext dbcontext , IConfiguration conf){
                dbContext = dbcontext;
+               this.conf = conf;
           }// connection to the 
 
           [HttpPost]
+          [AllowAnonymous]
           public async Task<ActionResult<IEnumerable<LoginForm>>> LoginUser([FromForm] LoginForm data)
           {
-               var User = await dbContext.UsersAuths.FirstOrDefaultAsync(
-                    u => u.username == data.Username
-               );
+               var user = await dbContext.UsersAuths.FirstOrDefaultAsync(u=>u.username == data.Username);
+               if(user == null){return BadRequest("user not found");}
+               if (!BCrypt.Net.BCrypt.Verify(data.password , user.password)){
+                    return BadRequest("wrong password");
+               }
+           
                if(User == null){
                     return NotFound("the user name is not found ");
                }
-              return Ok($"the user is :{User.username}"); 
+               string token = new AuthHelper(this.conf).GenerateJWTToken(user);
+              return Ok(new {token}); 
           } 
      }
 }
